@@ -5,13 +5,11 @@ import (
 )
 
 type Address struct {
-	Country   string `json:"country" bson:"country"`
-	Street    string `json:"street" bson:"street"`
-	StreetNum string `json:"streetNum" bson:"street_num"`
-	ZIPCode   int    `json:"zip" bson:"zip"`
+	Country string `json:"country" bson:"country"`
+	Street  string `json:"street" bson:"street"`
 }
 
-type Model struct {
+type IdModel struct {
 	Id         *primitive.ObjectID `json:"id" bson:"_id,omitempty"`
 	CreatedOn  int                 `json:"createdOn" bson:"created_on"`
 	ModifiedOn int                 `json:"modifiedOn" bson:"modified_on"`
@@ -19,12 +17,12 @@ type Model struct {
 }
 
 const (
-	UserRole  string = "USER"
+	UserRole  string = "GUEST"
 	AdminRole string = "ADMIN"
 )
 
 type User struct {
-	Model     `bson:",inline"`
+	IdModel   `bson:",inline"`
 	FirstName string `json:"firstName" bson:"first_name" binding:"required"`
 	LastName  string `json:"lastName" bson:"last_name" binding:"required"`
 	Email     string `json:"email" bson:"email" binding:"required,email"`
